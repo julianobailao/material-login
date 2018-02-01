@@ -19,13 +19,15 @@
         )
       v-btn.mt-3(block light large)
         | Acessar Sistema
-      v-layout.mt-3(row align-center)
-        v-btn.mr-0(flat block to="/sign-up")
-          v-icon.mr-2.mb-1 add
-          | Cadastre-se
-        v-btn.mr-0(flat block to="/forgot-password")
-          | Esqueci minha senha
-          v-icon.ml-2.mb-1 help
+      v-layout.mt-3(row wrap align-center)
+        v-flex(xs12 md6)
+          v-btn(flat block to="/sign-up")
+            v-icon.mr-2.mb-1 add
+            | Cadastre-se
+        v-flex(xs12 md6)
+          v-btn(flat block to="/forgot-password")
+            | Esqueci minha senha
+            v-icon.ml-2.mb-1 help
 </template>
 
 <script>

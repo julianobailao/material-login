@@ -14,51 +14,73 @@
       v-layout(row align-center)
         v-divider
         .headline.text-xs-center.mx-3
-          | CADASTRE-SE {{ payload.gender }}
+          | CADASTRE-SE
         v-divider
-      .mt-3
-        label Informe seu sexo:
-        v-layout(row align-center)
-          v-btn.mr-1(
-            dark
-            block
-            outline
-            @click.native="setGender('F')"
-            ) Feminino
-          v-btn.ml-1(
-            dark
-            block
-            outline
-            @click.native="setGender('M')"
-            ) Masculino
-      v-text-field(
+      outline-btn-toggle.mt-3(
+        :items="genders"
+        label="Sexo"
+        v-model="payload.gender"
+        )
+      v-text-field.mt-3(
+        label="Nome"
         color="white"
+        v-model="payload.name"
+        )
+      v-text-field(
+        label="Email"
+        type="email"
+        color="white"
+        v-model="payload.email"
+        )
+      v-text-field(
         label="Senha"
-        type="password"
+        color="white"
+        v-model="payload.password"
+        :append-icon="hidePassword ? 'visibility' : 'visibility_off'"
+        :append-icon-cb="() => (hidePassword = !hidePassword)"
+        :type="hidePassword ? 'password' : 'text'"
+        )
+      v-text-field(
+        label="Confirme sua senha"
+        color="white"
+        v-model="payload.password_confirmation"
+        :append-icon="hidePassword ? 'visibility' : 'visibility_off'"
+        :append-icon-cb="() => (hidePassword = !hidePassword)"
+        :type="hidePassword ? 'password' : 'text'"
         )
       v-btn.mt-3(block light large)
-        | Acessar Sistema
+        | Enviar Cadastro
       v-layout.mt-3(row align-center)
-        v-btn.mr-0(flat block to="/sign-up")
-          v-icon.mr-2.mb-1 add
-          | Cadastre-se
-        v-btn.mr-0(flat block to="/forgot-password")
-          | Esqueci minha senha
-          v-icon.ml-2.mb-1 help
+        v-btn.mr-0(flat block to="/sign-in")
+          v-icon.mr-2.mb-1 chevron_left
+          | Ja sou cadastrado
 </template>
 
 <script>
   import AnimatedSvgIcon from '@/components/AnimatedSvgIcon'
+  import OutlineBtnToggle from '@/components/OutlineBtnToggle'
 
   export default {
     components: {
-      AnimatedSvgIcon
+      AnimatedSvgIcon,
+      OutlineBtnToggle
     },
     data () {
       return {
         payload: {
-          gender: 'M'
-        }
+          gender: 'F'
+        },
+        genders: [
+          {
+            label: 'Feminino',
+            value: 'F'
+          },
+          {
+            label: 'Masculino',
+            value: 'M'
+          }
+        ],
+        hidePassword: true
       }
     },
     methods: {

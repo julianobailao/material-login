@@ -18,7 +18,7 @@
       v-btn.mt-3(block light large)
         | Recuperar senha
       v-layout.mt-3(row align-center)
-        v-btn.ma-0(flat to="/login")
+        v-btn.ma-0(flat to="/sign-in")
           v-icon(left) chevron_left
           | Voltar para login
 </template>

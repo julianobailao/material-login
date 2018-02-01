@@ -17,7 +17,7 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/login',
+      path: '/sign-in',
       component: Login,
       children: [
         {
