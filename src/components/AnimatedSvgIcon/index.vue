@@ -43,20 +43,22 @@
 
         this.$el.classList[isVisible ? 'add' : 'remove']('show')
 
-        return new Vivus(
-          this.iconId,
-          {
-            type: this.type,
-            file: this.file,
-            duration: this.duration,
-            onReady: (icon) => {
-              icon.el.setAttribute('width', this.size)
-              icon.el.setAttribute('height', this.size)
+        if (isVisible) {
+          return new Vivus(
+            this.iconId,
+            {
+              type: this.type,
+              file: this.file,
+              duration: this.duration,
+              onReady: (icon) => {
+                icon.el.setAttribute('width', this.size)
+                icon.el.setAttribute('height', this.size)
+              }
+            }, (icon) => {
+              icon.el.classList.add('loaded')
             }
-          }, (icon) => {
-            icon.el.classList.add('loaded')
-          }
-        )
+          )
+        }
       }
     }
   }
